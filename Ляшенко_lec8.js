@@ -36,3 +36,5 @@ for (var i= 100000; i>=0; i--){
         world.refresh();
 
 }};
+
+console.dir(world);
