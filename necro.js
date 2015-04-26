@@ -20,9 +20,11 @@ module.exports = Necromant = function (name) {
 
         if (Math.random()<=object.uvorot/100){
             console.log('Персонаж '+object.name+' ухилився від атаки персонажа '+this.name);
+            this.experience += 0.3;
             return;
         } else if (Math.random()<=object.parir/100) {
             console.log('Персонаж '+object.name+' відбив атаку персонажа '+this.name);
+            this.experience += 0.3;
             return;
         } else {
             Math.random() <= this.krit / 100 ? krit = 2 : krit = 1;

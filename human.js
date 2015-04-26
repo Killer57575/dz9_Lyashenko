@@ -3,10 +3,11 @@
  */
 var Vector = require('./vector');
 var world = require('./world');
+var msrshrut = require('./marshrut');
 
 
    module.exports = function (name, age) {
-        this.vector = new Vector(100, 100, 100, 100); //початкові координати Петі щоб розвести їх по різних кутах
+        this.vector = new Vector(0, 0, 0, 0); //початкові координати Петі щоб розвести їх по різних кутах
 
         this.name = name;
         this.health = 1000 * age + 1;   //здоров'я
@@ -50,9 +51,11 @@ var world = require('./world');
 
             if (Math.random() <= object.uvorot / 100) {
                 console.log('Персонаж ' + object.name + ' ухилився від атаки персонажа ' + this.name);
+                this.experience += 0.1;
                 return;
             } else if (Math.random() <= object.parir / 100) {
                 console.log('Персонаж ' + object.name + ' відбив атаку персонажа ' + this.name);
+                this.experience += 0.1;
                 return;
             } else {
                 Math.random() <= this.krit / 100 ? krit = 2 : krit = 1;

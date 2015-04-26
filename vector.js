@@ -13,6 +13,10 @@ module.exports = function (x1,y1,x2,y2) {
      return Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
      };*/
 
+    this.distanceTo = function(secondVector){
+        return Math.sqrt((secondVector.x2-this.x2)*(secondVector.x2-this.x2)+(secondVector.y2-this.y2)*(secondVector.y2-this.y2));
+    };
+
     this.peretin = function (secondVector) {
         var a1 = this.y1 - this.y2,
             b1 = this.x2 - this.x1,

@@ -2,7 +2,7 @@
  * Created by Note on 25.04.2015.
  */
 module.exports = (function(){
-    var world = {
+    return {
         maxX:800, //максимальна ширина де можуть рухатись персонажі
         maxY:600,  // -//- висота
         windStrength: 3, //сила вітру
@@ -15,5 +15,5 @@ module.exports = (function(){
         }
 
     };
-    return world;
+
 }());

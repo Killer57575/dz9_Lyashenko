@@ -5,6 +5,7 @@ var Human = require('./human');
 var Vector = require('./vector');
 var Necromant = require('./necro');
 var world = require('./world');
+var server = require('./server');
 
 
 
@@ -17,7 +18,7 @@ var necro = new Necromant('Дракула'); // створюємо дракул�
 
 
 //моделювання бою
-for (var i= 100000; i>=0; i--){
+/*for (var i= 100000; i>=0; i--){
     if ((peter.health<=0)||(necro.health<=0)){
         console.log('Пройшло ' + (100001-i) + ' ходів.');
         necro.health<=0?console.log('Переміг ' + peter.name):console.log('Переміг ' + necro.name);
@@ -35,6 +36,14 @@ for (var i= 100000; i>=0; i--){
     };
         world.refresh();
 
-}};
+}};*/
 
-console.dir(world);
+//server.start(); //запуск сервера
+
+var v1 = new Vector (1,0,3,2);
+var v2 = new Vector (0,0,2,2);
+
+console.log(v1.distanceTo(v2));
+
+var a= [1,2,3];
+console.log(a.length);

@@ -1,18 +1,18 @@
 /**
  * Created by Note on 23.04.2015.
  */
-
-
-
 var express = require ('express');
 var app = express ();
 var bodyparser = require ('body-parser');
 
-app.use(bodyparser.json());
 
-app.get('/info', function (req, res, next) {
-    res.status(200).send({pupkin: 'Hello World'});
-});
+//app.use(bodyparser.json());
+
+module.exports.start  = function start(){
+    app.get('/info', function (req, res, next) {
+            res.status(200).send({pupkin: 'Hello World'});
+        });
+
 app.post('/info', function (req, res, next) {
     var body = req.body;
     if (!body.key){
@@ -24,5 +24,6 @@ app.post('/info', function (req, res, next) {
 });
 
 app.listen(3030, function () {
-    console.log('сервер працює на 3030');
+    console.log('Cервер працює на 3030');
 });
+};
