@@ -36,10 +36,10 @@ var marshrut = require('./marshrut');
                 znakX = 0;
             } else if (this.goToXY[0] - this.vector.x2 > 0) {
                 znakX = 1;
-                this.vector.x2 += krok>this.goToXY[0]?this.vector.x2 = this.goToXY:this.vector.x2 += krok;
+                this.vector.x2 += krok>this.goToXY[0]?this.vector.x2 = this.goToXY[0]:this.vector.x2 += krok;
             } else {
                 znakX = -1;
-                this.vector.x2 -= krok<this.goToXY[0]?this.vector.x2 = this.goToXY:this.vector.x2 -= krok;
+                this.vector.x2 -= krok<this.goToXY[0]?this.vector.x2 = this.goToXY[0]:this.vector.x2 -= krok;
             }
             ;
 
@@ -47,10 +47,10 @@ var marshrut = require('./marshrut');
                 znakY = 0;
             } else if (this.goToXY[1] - this.vector.y2 > 0) {
                 znakY = 1;
-                this.vector.y2 += krok>this.goToXY[1]?this.vector.y2 = this.goToXY:this.vector.y2 += krok;
+                this.vector.y2 += krok>this.goToXY[1]?this.vector.y2 = this.goToXY[1]:this.vector.y2 += krok;
             } else {
                 znakY = -1;
-                this.vector.y2 -= krok<this.goToXY[1]?this.vector.y2 = this.goToXY:this.vector.y2 -= krok;
+                this.vector.y2 -= krok<this.goToXY[1]?this.vector.y2 = this.goToXY[1]:this.vector.y2 -= krok;
             }
             ;
 
