@@ -10,7 +10,7 @@ module.exports = (function () {
         nextXY: function () {
             var marsh = [[0, 0], [0, 600], [100, 600], [100, 0]];
             var len = marsh.length - 1;
-            this.curentPosition++;
+            this.curentPosition==len?this.curentPosition:this.curentPosition++;
             this.curentPosition == len ? this.theEnd = true : this.theEnd = false;
             return this.theEnd ? marsh[len] : marsh[this.curentPosition];
         }
