@@ -16,26 +16,25 @@ module.exports = Necromant = function (name) {
     this.krit = Necromant.prototype.krit*3;
     this.fightStrength = Necromant.prototype.fightStrength*3;
 
-    this.fight = function (object) {
+    this.fight = function (secondHero) {
 
-        if (Math.random()<=object.uvorot/100){
-            console.log('Персонаж '+object.name+' ухилився від атаки персонажа '+this.name);
-            this.experience += 0.3;
+        if (Math.random()<=secondHero.uvorot/100){
+            console.log('Персонаж '+secondHero.name+' ухилився від атаки персонажа '+this.name);
+            secondHero.experience += 0.1;
             return;
-        } else if (Math.random()<=object.parir/100) {
-            console.log('Персонаж '+object.name+' відбив атаку персонажа '+this.name);
-            this.experience += 0.3;
+        } else if (Math.random()<=secondHero.parir/100) {
+            console.log('Персонаж '+secondHero.name+' відбив атаку персонажа '+this.name);
+            secondHero.experience += 0.1;
             return;
         } else {
+            var udar = Math.round(this.fightStrength * this.experience * this.speed * krit-secondHero.armour/10);
             Math.random() <= this.krit / 100 ? krit = 2 : krit = 1;
-            object.health -= Math.round(this.fightStrength * this.experience * this.speed * krit-object.armour/10);
-            this.regeneration = Math.round(this.fightStrength * this.experience * this.speed * krit-object.armour/10);
+            secondHero.health -= udar;
+            this.regeneration = udar;
             this.health += this.regeneration;
+
+            console.log(this.name + ' нанес удар силой ' + udar + 'ед. персонажу ' + secondHero.name);};
             this.experience += 0.5;
-
-
-            console.log(this.name + ' нанес удар силой ' + Math.round(this.fightStrength * (this.experience-0.5) * this.speed * krit-object.armour/10) + 'ед. персонажу ' + object.name);};
-
     };
 
 };
