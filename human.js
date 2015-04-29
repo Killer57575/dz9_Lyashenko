@@ -8,6 +8,7 @@ var marshrut = require('./marshrut');
 
    module.exports = function (name, age) {
         this.vector = new Vector(0, 0, 0, 0); //початкові координати Петі щоб розвести їх по різних кутах
+        //ToDo винести початкові налаштування в окремий модуль
 
         this.name = name;
         this.health = 1000 * age + 1;   //здоров'я
