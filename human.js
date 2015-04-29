@@ -30,12 +30,10 @@ var marshrut = require('./marshrut');
             var znakY;
 
             if ((znakX != 0) && (znakY != 0)&&(marshrut.theEnd==false)) {
-                console.log(this.name + 'Прийшов до кінця');
 
                 if (marshrut.curentPosition == 0) {
                     this.goToXY = marshrut.nextXY()
-                }
-                ;
+                };
 
                 if (this.goToXY[0] - this.vector.x2 == 0) {
                     znakX = 0;
@@ -89,12 +87,12 @@ var marshrut = require('./marshrut');
                 console.log('Персонаж ' + this.name + ' перемістився по вектору (' + this.vector.x1 + ',' + this.vector.y1 + ',' + this.vector.x2 + ',' + this.vector.y2 + ')');
 
 
-                console.log(znakX);
+                /*console.log(znakX);
                 console.log(znakY);
                 console.log(krok);
                 console.log(marshrut.curentPosition);
                 console.log(marshrut.theEnd);
-                console.log(this.goToXY);
+                console.log(this.goToXY);*/
             };
         };
 
