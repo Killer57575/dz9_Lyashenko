@@ -21,16 +21,13 @@ var marshrut = require('./marshrut');
         this.goToXY = [0,0];
 
         this.moveTo = function () {
-            this.vector.x1 = this.vector.x2; //продовжуємо рух з останньої точки
-            this.vector.y1 = this.vector.y2;
-
             var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5));
-            //var obj = {n:[0,0]}; //gjxfnrgfsddfsfs
             var znakX;
             var znakY;
 
-            if ((znakX != 0) && (znakY != 0)&&(marshrut.theEnd==false)) {
-
+            if ((znakX != 0) && (znakY != 0)) {
+                this.vector.x1 = this.vector.x2; //продовжуємо рух з останньої точки
+                this.vector.y1 = this.vector.y2;
                 if (marshrut.curentPosition == 0) {
                     this.goToXY = marshrut.nextXY()
                 };
@@ -43,8 +40,7 @@ var marshrut = require('./marshrut');
                 } else {
                     znakX = -1;
                     this.vector.x2 - krok < this.goToXY[0] ? this.vector.x2 = this.goToXY[0] : this.vector.x2 -= krok;
-                }
-                ;
+                };
 
                 if (this.goToXY[1] - this.vector.y2 == 0) {
                     znakY = 0;
@@ -54,45 +50,18 @@ var marshrut = require('./marshrut');
                 } else {
                     znakY = -1;
                     this.vector.y2 - krok < this.goToXY[1] ? this.vector.y2 = this.goToXY[1] : this.vector.y2 -= krok;
-                }
-                ;
-
+                };
 
                 if ((znakX == 0) && (znakY == 0)) {
                     this.goToXY = marshrut.nextXY();
-                }
-                ;
+                    return;
+                };
 
-
-                /*(Math.round(Math.random()) * (-1) < 0) ? this.vector.x2 -= krok : this.vector.x2 += krok;
-                 (Math.round(Math.random()) * (-1) < 0) ? this.vector.y2 -= krok : this.vector.y2 += krok;
-
-                 if (this.vector.x2 < 0) {
-                 this.vector.x2 = 0
-                 }
-                 ; //якщо вийшли за межі
-                 if (this.vector.y2 < 0) {
-                 this.vector.y2 = 0
-                 }
-                 ;
-                 if (this.vector.x2 >= world.maxX) {
-                 this.vector.x2 = world.maxX
-                 }
-                 ;
-                 if (this.vector.y2 >= world.maxY) {
-                 this.vector.y2 = world.maxY
-                 };*/
-
-                //console.log('Персонаж ' + this.name + ' перемістився в точку (' + this.vector.x2 + ',' + this.vector.y2 + ')');
-                console.log('Персонаж ' + this.name + ' перемістився по вектору (' + this.vector.x1 + ',' + this.vector.y1 + ',' + this.vector.x2 + ',' + this.vector.y2 + ')');
-
-
-                /*console.log(znakX);
-                console.log(znakY);
-                console.log(krok);
-                console.log(marshrut.curentPosition);
-                console.log(marshrut.theEnd);
-                console.log(this.goToXY);*/
+                if ((znakX == 0) && (znakY == 0)&&(marshrut.theEnd==true)) {
+                    return;
+                };
+                console.log('Персонаж ' + this.name + ' перемістився в точку (' + this.vector.x2 + ',' + this.vector.y2 + ')');
+                //console.log('Персонаж ' + this.name + ' перемістився по вектору (' + this.vector.x1 + ',' + this.vector.y1 + ',' + this.vector.x2 + ',' + this.vector.y2 + ')');
             };
         };
 

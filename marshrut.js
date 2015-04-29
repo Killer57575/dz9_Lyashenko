@@ -8,7 +8,7 @@ module.exports = (function () {
         curentPosition: 0,
         theEnd: false,
         nextXY: function () {
-            var marsh = [[0, 0], [0, 600], [100, 600], [100, 0]];
+            var marsh = [[0, 0], [0, 10], [115, 20], [200, 200]];
             var len = marsh.length - 1;
             this.curentPosition==len?this.curentPosition:this.curentPosition++;
             this.curentPosition == len ? this.theEnd = true : this.theEnd = false;

@@ -225,3 +225,4 @@ peter.moveTo();
 peter.moveTo();
 peter.moveTo();
 peter.moveTo();
+console.log(peter.goToXY);
