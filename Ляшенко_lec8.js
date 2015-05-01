@@ -4,8 +4,7 @@
 var Human = require('./human');
 var Necromant = require('./necro');
 var world = require('./world');
-var server = require('./server');
-var router = require('./router');
+//var server = require('./server')();
 
 
 
@@ -38,12 +37,15 @@ var necro = new Necromant('Дракула'); // створюємо дракул�
 
 }};*/
 
-server.start(router.route); //запуск сервера
 
 /*var v1 = new Vector (1,0,3,2);
 var v2 = new Vector (0,0,2,2);
 
 console.log(v1.distanceTo(v2));
 */
-//peter.moveTo();
+peter.moveTo();
+peter.moveTo();
+peter.moveTo();
+peter.moveTo();
+peter.moveTo();
 
