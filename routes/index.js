@@ -6,7 +6,7 @@
 var createRouter = require('./createHero');
 var humanRouter = require('./humanRouter');
 var necroRouter = require('./necroRouter');
-var mimoRouter = require('./mimo');
+var mimoRouter = require('./mimo'); //роутер для не валідних запитів
 
 
 

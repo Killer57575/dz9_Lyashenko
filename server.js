@@ -8,7 +8,7 @@ var bodyparser = require ('body-parser');
 var logger = require('morgan');
 app.use(logger('dev'));
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended:true}));
+//app.use(bodyparser.urlencoded({extended:true}));
 
 var index = require('./routes/index')(app);
 

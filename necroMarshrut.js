@@ -5,8 +5,8 @@
  * Created by Note on 26.04.2015.
  */
 
-var Human = require('./human');
 var Necromant = require('./necro');
+var configHeroes = require('./configHeroes');
 
 var necromarshrut = {
 
@@ -14,7 +14,7 @@ var necromarshrut = {
     necroTheEnd: false,
 
     necronextXY: function () {
-        var marsh2 = [[800, 450], [700, 400], [600, 200], [550, 250],[400,300]];
+        var marsh2 = [configHeroes.humanStartPoint, [700, 400], [600, 200], [550, 250],configHeroes.necroEndPoint];
         var len2 = marsh2.length - 1;
 
         if (this.necroCurentPosition != len2) {

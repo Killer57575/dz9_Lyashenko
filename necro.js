@@ -66,7 +66,7 @@ module.exports = Necromant = function (name) {
     };
 
     this.fight = function (secondHero) {
-        if (this.vector.distanceTo(secondHero.vector)) {
+        if (this.vector.distanceTo(secondHero.vector)<=this.atackDistance) {
             if (Math.random() <= secondHero.uvorot / 100) {
                 console.log('Персонаж ' + secondHero.name + ' ухилився від атаки персонажа ' + this.name);
                 secondHero.experience += 0.1;
@@ -76,8 +76,8 @@ module.exports = Necromant = function (name) {
                 secondHero.experience += 0.1;
                 return;
             } else {
-                var udar = Math.round(this.fightStrength * this.experience * this.speed * krit - secondHero.armour / 10);
                 Math.random() <= this.krit / 100 ? krit = 2 : krit = 1;
+                var udar = Math.round(this.fightStrength * this.experience * this.speed * krit - secondHero.armour / 10);
                 secondHero.health -= udar;
                 this.regeneration = udar;
                 this.health += this.regeneration;
@@ -86,7 +86,7 @@ module.exports = Necromant = function (name) {
             };
             this.experience += 0.5;
         } else {
-            console.log(this.name + 'не може нанести удар по персонажу ' + secondHero.name);
+            console.log(this.name + ' не може нанести удар по персонажу ' + secondHero.name);
         };
 
     };

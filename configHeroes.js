@@ -4,7 +4,9 @@
 
 var configHeroes = {
     humanStartPoint : [0,0],
-    necroStartPoint : [800,450]
+    humanEndPoint : [400,300],
+    necroStartPoint : [800,450],
+    necroEndPoint : [400,300]
 };
 
 module.exports = configHeroes;
