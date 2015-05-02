@@ -83,7 +83,7 @@ var marshrut = require('./marshrut');
                 console.log(this.name + ' наніс удар силою ' + udar + 'од. персонажу ' + secondHero.name);
                 this.experience += 0.2;
             };} else {
-                console.log(this.name + 'не може нанести удар '+secondHero.name);
+                console.log(this.name + 'не може нанести удар по персонажу ' + secondHero.name);
             };
 
         };

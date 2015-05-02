@@ -8,12 +8,7 @@ var world = require('./world');
 
 
 
-var peter = new Human('Петя',25);
 
-Necromant.prototype = peter;         //наслідуємось від петі
-Necromant.constructor = Necromant;
-
-var necro = new Necromant('Дракула'); // створюємо дракулу, покращеного петю
 
 
 //моделювання бою
@@ -43,9 +38,4 @@ var v2 = new Vector (0,0,2,2);
 
 console.log(v1.distanceTo(v2));
 */
-peter.moveTo();
-peter.moveTo();
-peter.moveTo();
-peter.moveTo();
-peter.moveTo();
 

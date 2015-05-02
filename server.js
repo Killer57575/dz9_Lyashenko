@@ -7,14 +7,16 @@ var app = express ();
 var bodyparser = require ('body-parser');
 var logger = require('morgan');
 app.use(logger('dev'));
-
-var index = require('routes/index')(app);
-
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:true}));
+
+var index = require('./routes/index')(app);
+
+
 
 
     app.listen(3030, function () {
     console.log('Cервер працює на 3030');
     });
+
 

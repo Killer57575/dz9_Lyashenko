@@ -38,7 +38,7 @@ module.exports = Necromant = function (name) {
             };
             this.experience += 0.5;
         } else {
-            console.log(this.name + 'не може нанести удар ' + secondHero.name);
+            console.log(this.name + 'не може нанести удар по персонажу ' + secondHero.name);
         };
 
     };
