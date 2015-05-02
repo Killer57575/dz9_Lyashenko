@@ -3,10 +3,26 @@
  */
 var Human = require('./human');
 var Necromant = require('./necro');
-var world = require('./world');
+//var marshrut = require('./marshrut');
+//var world = require('./world');
 //var server = require('./server')();
 
 
+var petya = new Human("Петя",25);
+Necromant.prototype = petya;         //наслідуємось від петі
+Necromant.constructor = Necromant;
+var necro = new Necromant("Дракула");
+
+
+for (var i=100;i>0;i--){
+    petya.moveTo();
+};
+
+console.dir(petya);
+console.dir(necro);
+for (var j=100;j>0;j--){
+    necro.moveTo();
+};
 
 
 

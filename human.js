@@ -3,7 +3,8 @@
  */
 var Vector = require('./vector');
 var world = require('./world');
-var marshrut = require('./marshrut');
+var humanmarshrut = require('./humanMarshrut');
+var configHeroes = require('./configHeroes');
 
 
    module.exports = function (name, age) {
@@ -20,7 +21,7 @@ var marshrut = require('./marshrut');
         this.krit = 3.5 * this.experience; //шанс нанести подвійний урон
         this.armour = 100 * this.experience; //броня
         this.fightStrength = 100; //сила удару
-        this.goToXY = [0,0];
+        this.goToXY = configHeroes.humanStartPoint;
 
         this.moveTo = function () {
             var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5));
@@ -31,8 +32,8 @@ var marshrut = require('./marshrut');
 
                 this.vector.x1 = this.vector.x2; //продовжуємо рух з останньої точки
                 this.vector.y1 = this.vector.y2;
-                if (marshrut.curentPosition == 0) {   //якщо в початковій точці взяти із маршрута наступну
-                    this.goToXY = marshrut.nextXY()
+                if (humanmarshrut.humanCurentPosition == 0) {   //якщо в початковій точці взяти із маршрута наступну
+                    this.goToXY = humanmarshrut.humannextXY()
                 };
 
                 if (this.goToXY[0] - this.vector.x2 == 0) {
@@ -55,10 +56,10 @@ var marshrut = require('./marshrut');
                     this.vector.y2 - krok < this.goToXY[1] ? this.vector.y2 = this.goToXY[1] : this.vector.y2 -= krok;
                 };
 
-                if ((znakX == 0) && (znakY == 0)&&(marshrut.theEnd==true)) { //якщо кінець маршрута вийти
+                if ((znakX == 0) && (znakY == 0)&&(humanmarshrut.humanTheEnd==true)) { //якщо кінець маршрута вийти
                     return;
                 } else {
-                    this.goToXY = marshrut.nextXY();
+                    this.goToXY = humanmarshrut.humannextXY();
                 };
 
                 console.log('Персонаж ' + this.name + ' перемістився в точку (' + this.vector.x2 + ',' + this.vector.y2 + ')');

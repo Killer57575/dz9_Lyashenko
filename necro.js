@@ -2,6 +2,9 @@
  * Created by Note on 25.04.2015.
  */
 var Vector = require('./vector');
+var world = require('./world');
+var necroMarshrut = require('./necroMarshrut');
+var configHeroes = require('./configHeroes');
 var Human = require('./human');
 
 module.exports = Necromant = function (name) {
@@ -16,6 +19,51 @@ module.exports = Necromant = function (name) {
     this.parir = Necromant.prototype.parir * 2;
     this.krit = Necromant.prototype.krit * 3;
     this.fightStrength = Necromant.prototype.fightStrength * 3;
+    this.goToXY = configHeroes.necroStartPoint;
+
+    this.moveTo = function () {
+        var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5));
+        var znakX;
+        var znakY;
+
+        if ((znakX != 0) && (znakY != 0)) {
+
+            this.vector.x1 = this.vector.x2; //продовжуємо рух з останньої точки
+            this.vector.y1 = this.vector.y2;
+            if (necroMarshrut.necroCurentPosition == 0) {   //якщо в початковій точці взяти із маршрута наступну
+                this.goToXY = necroMarshrut.necronextXY();
+            };
+
+            if (this.goToXY[0] - this.vector.x2 == 0) {
+                znakX = 0; // якщо не можемо рухатись по координаті х
+            } else if (this.goToXY[0] - this.vector.x2 > 0) {
+                znakX = 1; //якщо рухаємось по координаті х вперед
+                this.vector.x2 + krok > this.goToXY[0] ? this.vector.x2 = this.goToXY[0] : this.vector.x2 += krok;
+            } else {
+                znakX = -1; // якщо рухаємось по координаті х назад
+                this.vector.x2 - krok < this.goToXY[0] ? this.vector.x2 = this.goToXY[0] : this.vector.x2 -= krok;
+            };
+
+            if (this.goToXY[1] - this.vector.y2 == 0) { //рух по координаті у
+                znakY = 0;
+            } else if (this.goToXY[1] - this.vector.y2 > 0) {
+                znakY = 1;
+                this.vector.y2 + krok > this.goToXY[1] ? this.vector.y2 = this.goToXY[1] : this.vector.y2 += krok;
+            } else {
+                znakY = -1;
+                this.vector.y2 - krok < this.goToXY[1] ? this.vector.y2 = this.goToXY[1] : this.vector.y2 -= krok;
+            };
+
+            if ((znakX == 0) && (znakY == 0)&&(necroMarshrut.necroTheEnd==true)) { //якщо кінець маршрута вийти
+                return;
+            } else {
+                this.goToXY = necroMarshrut.necronextXY();
+            };
+
+            console.log('Персонаж ' + this.name + ' перемістився в точку (' + this.vector.x2 + ',' + this.vector.y2 + ')');
+            //console.log('Персонаж ' + this.name + ' перемістився по вектору (' + this.vector.x1 + ',' + this.vector.y1 + ',' + this.vector.x2 + ',' + this.vector.y2 + ')');
+        };
+    };
 
     this.fight = function (secondHero) {
         if (this.vector.distanceTo(secondHero.vector)) {
