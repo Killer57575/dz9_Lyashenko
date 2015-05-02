@@ -8,8 +8,7 @@ var configHeroes = require('./configHeroes');
 
 
    module.exports = function (name, age) {
-        this.vector = new Vector(0, 0, 0, 0); //початкові координати Петі щоб розвести їх по різних кутах
-        //ToDo винести початкові налаштування в окремий модуль
+        this.vector = new Vector(configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1], configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1]); //початкові координати Петі щоб розвести їх по різних кутах
 
         this.name = name;
         this.health = 1000 * age + 1;   //здоров'я

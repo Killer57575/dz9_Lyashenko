@@ -8,7 +8,7 @@ var configHeroes = require('./configHeroes');
 var Human = require('./human');
 
 module.exports = Necromant = function (name) {
-    this.vector = new Vector(800, 450, 800, 450); // початкові координати Дракули
+    this.vector = new Vector(configHeroes.necroStartPoint[0], configHeroes.necroStartPoint[1], configHeroes.necroStartPoint[0], configHeroes.necroStartPoint[1]); // початкові координати Дракули
     this.regeneration = 0; // регенерація здоров'я за рахунок випитої крові
     this.name = name;
     this.health = Necromant.prototype.health * 2;
