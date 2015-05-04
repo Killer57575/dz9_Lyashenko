@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var humanRouter = express.Router();
+var world = require('../world');
 
 
 humanRouter.get('/:humanName/moveTo', function(req, res) {
@@ -10,6 +11,7 @@ humanRouter.get('/:humanName/moveTo', function(req, res) {
     if (global.human!=undefined){
     if (global.human.name==humanName){
         global.human.moveTo();
+        world.refresh();
         res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
     } else {
         res.status(403).send('Немає такої Людини ' + humanName);

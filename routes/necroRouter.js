@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var necroRouter = express.Router();
+var world = require('../world');
 
 
 necroRouter.get('/:necroName/moveTo', function(req, res) {
@@ -10,6 +11,7 @@ necroRouter.get('/:necroName/moveTo', function(req, res) {
     if (global.necro!=undefined){
     if (global.necro.name==necroName){
         global.necro.moveTo();
+        world.refresh();
         res.status(200).send('Персонаж ' + global.necro.name + ' перемістився в точку (' + global.necro.vector.x2 + ',' + global.necro.vector.y2 + ')');
     } else {
         res.status(403).send('Немає такої Людини ' + necroName);
