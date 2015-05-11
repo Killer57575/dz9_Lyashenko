@@ -20,7 +20,6 @@ module.exports = function (app){
           } else {
                message = err.message;
           }
-          //ToDo check env production || development
 
           res.status(status).send(message);
           console.log(message);

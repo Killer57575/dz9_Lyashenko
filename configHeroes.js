@@ -5,7 +5,7 @@
 var configHeroes = {
     humanStartPoint : [0,0],
     humanEndPoint : [400,300],
-    necroStartPoint : [800,450],
+    necroStartPoint : [800,500],
     necroEndPoint : [400,300]
 };
 

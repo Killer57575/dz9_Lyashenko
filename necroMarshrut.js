@@ -12,7 +12,7 @@ var necromarshrut = {
     necroTheEnd: false,
 
     necronextXY: function () {
-        var marsh2 = [configHeroes.humanStartPoint, [700, 400], [600, 200], [550, 250],configHeroes.necroEndPoint];
+        var marsh2 = [configHeroes.necroStartPoint, [700, 400], [600, 200], [550, 250],configHeroes.necroEndPoint];
         var len2 = marsh2.length - 1;
 
         if (this.necroCurentPosition != len2) {

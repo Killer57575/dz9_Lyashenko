@@ -58,7 +58,7 @@ var configHeroes = require('./configHeroes');
                 if ((znakX == 0) && (znakY == 0)&&(humanmarshrut.humanTheEnd==true)) { //якщо кінець маршрута вийти
                     return;
                 } else {
-                    this.goToXY = humanmarshrut.humannextXY();
+                    this.goToXY = humanmarshrut.humannextXY();  //взяти  наступну точку маршрута
                 };
 
                 console.log('Персонаж ' + this.name + ' перемістився в точку (' + this.vector.x2 + ',' + this.vector.y2 + ')');
