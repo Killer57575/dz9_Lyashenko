@@ -1,9 +1,7 @@
 /**
  * Created by Note on 02.05.2015.
  */
-/**
- * Created by Note on 26.04.2015.
- */
+
 
 var Necromant = require('./necro');
 var configHeroes = require('./configHeroes');
