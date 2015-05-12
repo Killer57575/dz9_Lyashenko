@@ -16,6 +16,12 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
     };
 });
 
+humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
+    global.human.moveTo(req.params.x,req.params.y);
+    world.refresh();
+    res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
+});
+
 humanRouter.get('/:humanName/moveTo', function(req, res) {
         global.human.moveTo();
         world.refresh();
@@ -23,12 +29,17 @@ humanRouter.get('/:humanName/moveTo', function(req, res) {
 });
 
 humanRouter.get('/:humanName/fight', function(req, res) {
+            var hel;
             if (global.necro!=undefined) {   //чи Некромант створений
                 if ((global.human.health<=0)||(global.necro.health<=0)){
                     global.necro.health<=0?console.log('Переміг ' + global.human.name):console.log('Переміг ' + global.necro.name);
                     } else {
+                        hel = global.necro.health;
                         global.human.fight(global.necro); //атака
-                        global.necro.fight(global.human); //здача
+
+                        if (hel>global.necro.health){
+                            global.necro.fight(global.human); //якщо вдарили то дати здачу
+                        };
                     };
                 res.status(200).send();
             } else {res.status(403).send('Персонаж класу Некромант не створений, немає кого вдарити')};

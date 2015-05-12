@@ -16,6 +16,12 @@ necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
     };
 });
 
+necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
+    global.necro.moveTo(req.params.x,req.params.y);
+    world.refresh();
+    res.status(200).send('Персонаж ' + global.necro.name + ' перемістився в точку (' + global.necro.vector.x2 + ',' + global.necro.vector.y2 + ')');
+});
+
 necroRouter.get('/:necroName/moveTo', function(req, res) {
         global.necro.moveTo();
         world.refresh();
@@ -23,12 +29,16 @@ necroRouter.get('/:necroName/moveTo', function(req, res) {
 });
 
 necroRouter.get('/:necroName/fight', function(req, res) {
+        var hel;
             if (global.human!=undefined) {    //чи створена людина
                 if ((global.human.health<=0)||(global.necro.health<=0)){
                     global.necro.health<=0?console.log('Переміг ' + global.human.name):console.log('Переміг ' + global.necro.name);
                 } else {
+                    hel = global.human.health;
                     global.necro.fight(global.human); //атака
-                    global.human.fight(global.necro); //здача
+                    if (hel>global.human.health){
+                        global.human.fight(global.necro); //якщо вдарили то дати здачу
+                    };
                 };
                 res.status(200).send();
             } else {res.status(403).send('Персонаж класу Людина не створений, немає кого вдарити')};
