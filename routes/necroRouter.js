@@ -18,12 +18,22 @@ necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
 
 necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
     global.necro.moveTo(req.params.x,req.params.y);
+    if (global.human!=undefined){
+        if (global.necro.vector.distanceTo(global.human.vector)) {
+            global.necro.fight(global.human);              // якщо після переміщення можемо вдарити
+        };
+    };
     world.refresh();
     res.status(200).send('Персонаж ' + global.necro.name + ' перемістився в точку (' + global.necro.vector.x2 + ',' + global.necro.vector.y2 + ')');
 });
 
 necroRouter.get('/:necroName/moveTo', function(req, res) {
         global.necro.moveTo();
+        if (global.human!=undefined){
+            if (global.necro.vector.distanceTo(global.human.vector)) {
+                global.necro.fight(global.human);              // якщо після переміщення можемо вдарити
+            };
+        };
         world.refresh();
         res.status(200).send('Персонаж ' + global.necro.name + ' перемістився в точку (' + global.necro.vector.x2 + ',' + global.necro.vector.y2 + ')');
 });

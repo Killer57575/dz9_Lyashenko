@@ -18,12 +18,22 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
 
 humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
     global.human.moveTo(req.params.x,req.params.y);
+    if (global.necro!=undefined){
+        if (global.human.vector.distanceTo(global.necro.vector)) {
+            global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
+        };
+    };
     world.refresh();
     res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
 });
 
 humanRouter.get('/:humanName/moveTo', function(req, res) {
         global.human.moveTo();
+        if (global.necro!=undefined){
+            if (global.human.vector.distanceTo(global.necro.vector)) {
+                global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
+            };
+        };
         world.refresh();
         res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
 });
