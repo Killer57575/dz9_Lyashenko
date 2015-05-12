@@ -19,7 +19,7 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
 humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
     global.human.moveTo(req.params.x,req.params.y);
     if (global.necro!=undefined){
-        if (global.human.vector.distanceTo(global.necro.vector)) {
+        if (global.human.vector.distanceTo(global.necro.vector)<=global.human.atackDistance) {
             global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
         };
     };
@@ -30,7 +30,7 @@ humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
 humanRouter.get('/:humanName/moveTo', function(req, res) {
         global.human.moveTo();
         if (global.necro!=undefined){
-            if (global.human.vector.distanceTo(global.necro.vector)) {
+            if (global.human.vector.distanceTo(global.necro.vector)<=global.human.atackDistance) {
                 global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
             };
         };

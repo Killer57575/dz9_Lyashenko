@@ -19,7 +19,7 @@ necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
 necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
     global.necro.moveTo(req.params.x,req.params.y);
     if (global.human!=undefined){
-        if (global.necro.vector.distanceTo(global.human.vector)) {
+        if (global.necro.vector.distanceTo(global.human.vector)<=global.necro.atackDistance) {
             global.necro.fight(global.human);              // якщо після переміщення можемо вдарити
         };
     };
@@ -30,7 +30,7 @@ necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
 necroRouter.get('/:necroName/moveTo', function(req, res) {
         global.necro.moveTo();
         if (global.human!=undefined){
-            if (global.necro.vector.distanceTo(global.human.vector)) {
+            if (global.necro.vector.distanceTo(global.human.vector)<=global.necro.atackDistance) {
                 global.necro.fight(global.human);              // якщо після переміщення можемо вдарити
             };
         };
