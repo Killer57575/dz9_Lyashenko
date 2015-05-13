@@ -9,10 +9,9 @@ var Necromant = require('../necro');
 
 createRouter.post('/necro', function(req, res) {
     var name = req.body.name;
-    //var name = req.params.name;
     if (global.human){
     global.necro ={};
-    Necromant.prototype = global.human;         //наслідуємось від петі
+    Necromant.prototype = global.human;         //наслідуємось від Людини
     Necromant.constructor = Necromant;
     global.necro = new Necromant(name);
         console.log('Персонаж класу Некромант з іменем ' + name +' створено успішно');
@@ -37,7 +36,7 @@ createRouter.post('/human', function(req, res) {
     };
 });
 
-createRouter.get('*', function(req, res) {
+createRouter.use('*', function(req, res) {
     res.status(403).send('Для створення Людини - введіть Ім\'я та вік в post create/human'+'<br />'+'Для створення Некроманта - введіть Ім\'я в post create/necro');
 });
 

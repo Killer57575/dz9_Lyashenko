@@ -6,7 +6,7 @@
 var Necromant = require('./necro');
 var configHeroes = require('./configHeroes');
 
-var necromarshrut = {
+var necroMarshrut = {
 
     necroCurentPosition: 0,
     necroTheEnd: false,
@@ -25,4 +25,4 @@ var necromarshrut = {
 
     }
 };
-module.exports = necromarshrut;
+module.exports = necroMarshrut;
