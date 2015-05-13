@@ -5,8 +5,8 @@
 var express = require ('express');
 var app = express ();
 var bodyparser = require ('body-parser');
-var logger = require('morgan');
-app.use(logger('dev'));
+//var logger = require('morgan');
+//app.use(logger('dev'));
 app.use(bodyparser.json());
 //app.use(bodyparser.urlencoded({extended:true}));
 
