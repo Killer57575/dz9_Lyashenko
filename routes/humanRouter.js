@@ -4,6 +4,19 @@
 var express = require('express');
 var humanRouter = express.Router();
 var world = require('../world');
+var hel;
+
+function ableToFight (){
+    if (global.necro!=undefined){
+        if (global.human.vector.distanceTo(global.necro.vector)<=global.human.atackDistance) {
+            hel = global.necro.health;
+            global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
+            if (hel>global.necro.health){
+                global.necro.fight(global.human); //якщо вдарили то дати здачу
+            };
+        };
+    };
+};
 
 humanRouter.get('/:humanName/*', function(req, res, next) {  //валідатор
     var humanName = req.params.humanName;
@@ -18,45 +31,35 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
 
 humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
     global.human.moveTo(req.params.x,req.params.y);
-    if (global.necro!=undefined){
-        if (global.human.vector.distanceTo(global.necro.vector)<=global.human.atackDistance) {
-            global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
-        };
-    };
+    ableToFight();
     world.refresh();
     res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
 });
 
 humanRouter.get('/:humanName/moveTo', function(req, res) {
-        global.human.moveTo();
-        if (global.necro!=undefined){
-            if (global.human.vector.distanceTo(global.necro.vector)<=global.human.atackDistance) {
-                global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
-            };
-        };
-        world.refresh();
-        res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
+    global.human.moveTo();
+    ableToFight();
+    world.refresh();
+    res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
 });
 
 humanRouter.get('/:humanName/fight', function(req, res) {
-            var hel;
-            if (global.necro!=undefined) {   //чи Некромант створений
-                if ((global.human.health<=0)||(global.necro.health<=0)){
-                    global.necro.health<=0?console.log('Переміг ' + global.human.name):console.log('Переміг ' + global.necro.name);
-                    } else {
-                        hel = global.necro.health;
-                        global.human.fight(global.necro); //атака
-
-                        if (hel>global.necro.health){
-                            global.necro.fight(global.human); //якщо вдарили то дати здачу
-                        };
-                    };
-                res.status(200).send();
-            } else {res.status(403).send('Персонаж класу Некромант не створений, немає кого вдарити')};
+    if (global.necro!=undefined) {   //чи Некромант створений
+        if ((global.human.health<=0)||(global.necro.health<=0)){
+            global.necro.health<=0?console.log('Переміг ' + global.human.name):console.log('Переміг ' + global.necro.name);
+        } else {
+            hel = global.necro.health;
+            global.human.fight(global.necro); //атака
+            if (hel>global.necro.health){
+                global.necro.fight(global.human); //якщо вдарили то дати здачу
+            };
+        };
+        res.status(200).send();
+    } else {res.status(403).send('Персонаж класу Некромант не створений, немає кого вдарити')};
 });
 
 humanRouter.use('*', function(req, res) {
-    res.status(403).send('Для переміщення Людини - введіть в get /human/Ім\'я людини/moveTo'+'<br />'+'Для атаки - введіть в  get /human/Ім\'я людини/fight');
+    res.status(403).send('Для переміщення Людини - введіть в get /human/Ім\'я людини/moveTo або /human/Ім\'я Людини/moveTo/Х/У'+'<br />'+'Для атаки - введіть в  get /human/Ім\'я людини/fight');
 });
 
 module.exports = humanRouter;
