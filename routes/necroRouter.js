@@ -31,7 +31,7 @@ necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
 
 necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
     global.necro.moveTo(req.params.x,req.params.y);
-    ableToFight();
+    ableToFight(); //якщо може когось вдарити після переміщення то проходить атака
     world.refresh();
     res.status(200).send('Персонаж ' + global.necro.name + ' перемістився в точку (' + global.necro.vector.x2 + ',' + global.necro.vector.y2 + ')');
 });

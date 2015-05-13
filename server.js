@@ -15,8 +15,8 @@ var index = require('./routes/index')(app);
 
 
 
-    app.listen(3030, function () {
-    console.log('Cервер працює на 3030');
-    });
+app.listen(3030, function () {
+console.log('Cервер працює на 3030');
+});
 
 

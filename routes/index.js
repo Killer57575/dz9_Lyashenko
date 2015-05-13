@@ -12,18 +12,18 @@ var mimoRouter = require('./mimo'); //роутер для не валідних 
 
 module.exports = function (app){
 
-          function errHandler(err, req, res, next) {
-          var status = err.status || 500;
-          var message;
-          if (process.env.NODE_ENV === 'development') {
-               message = err.message + '\n\r ' + err.stack;
-          } else {
-               message = err.message;
-          }
+    function errHandler(err, req, res, next) {
+        var status = err.status || 500;
+        var message;
+        if (process.env.NODE_ENV === 'development') {
+            message = err.message + '\n\r ' + err.stack;
+        } else {
+            message = err.message;
+        }
 
-          res.status(status).send(message);
-          console.log(message);
-          };
+        res.status(status).send(message);
+        console.log(message);
+    };
 
 
      app.use('/create', createRouter);

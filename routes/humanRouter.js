@@ -31,7 +31,7 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
 
 humanRouter.get('/:humanName/moveTo/:x/:y', function(req, res) {
     global.human.moveTo(req.params.x,req.params.y);
-    ableToFight();
+    ableToFight(); //якщо може когось вдарити після переміщення то проходить атака
     world.refresh();
     res.status(200).send('Персонаж ' + global.human.name + ' перемістився в точку (' + global.human.vector.x2 + ',' + global.human.vector.y2 + ')');
 });
