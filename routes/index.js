@@ -25,7 +25,6 @@ module.exports = function (app){
         console.log(message);
     };
 
-
      app.use('/create', createRouter);
      app.use('/human', humanRouter);
      app.use('/necromant', necroRouter);

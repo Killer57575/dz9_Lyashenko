@@ -18,12 +18,13 @@ module.exports = Necromant = function (name) {
     this.uvorot = Necromant.prototype.uvorot * 2;
     this.parir = Necromant.prototype.parir * 2;
     this.krit = Necromant.prototype.krit * 3;
+    this.armour = Necromant.prototype.armour+100;
     this.fightStrength = Necromant.prototype.fightStrength * 3;
     this.goToXY = configHeroes.necroStartPoint;
     this.onMarshrut = [0,0,true];
 
     this.moveTo = function () {
-        var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5));
+        var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5))+1;
         var znakX;
         var znakY;
         var x = arguments[0];

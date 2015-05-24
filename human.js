@@ -8,8 +8,9 @@ var configHeroes = require('./configHeroes');
 
 
 module.exports = function (name, age) {
-    this.vector = new Vector(configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1], configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1]); //початкові координати Петі щоб розвести їх по різних кутах
+    this.vector = new Vector(configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1], configHeroes.humanStartPoint[0], configHeroes.humanStartPoint[1]); //початкові координати Людини щоб розвести їх по різних кутах
     this.name = name;
+    this.age = age;
     this.health = 1000 * age + 1;   //здоров'я
     this.atackDistance = 5;
     this.speed = 1.2 - (age / 200);  //максимальна швидкість персонажа
@@ -23,7 +24,7 @@ module.exports = function (name, age) {
     this.onMarshrut = [0,0,true];
 
     this.moveTo = function () {
-        var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5));
+        var krok = Math.round(Math.random() * (this.speed * 20 - world.windStrength - world.obstacles - world.water * 5))+1;
         var znakX;
         var znakY;
         var x = arguments[0];
