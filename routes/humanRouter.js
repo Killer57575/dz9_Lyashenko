@@ -53,64 +53,70 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
     if ((global.human==undefined)&&(global.necro==undefined)){ // ліземо в базу за героями
         HumanModel.findOne({"_id":1},function(err,hero){
             if (err){
-                next(err);
+                return next(err);
             };
-            global.human = {};
-            global.human = new Human(hero.name,hero.age);
-            global.human.vector.x1 = hero.vector.x1;
-            global.human.vector.y1 = hero.vector.y1;
-            global.human.vector.x2 = hero.vector.x2;
-            global.human.vector.y2 = hero.vector.y2;
-            global.human.health = hero.health;
-            global.human.atackDistance = hero.atackDistance;
-            global.human.speed = hero.speed;
-            global.human.experience = hero.experience;
-            global.human.uvorot = hero.uvorot;
-            global.human.parir = hero.parir;
-            global.human.krit = hero.krit;
-            global.human.armour = hero.armour;
-            global.human.fightStrength = hero.fightStrength;
-            global.human.goToXY = hero.goToXY;
-            global.human.onMarshrut = hero.onMarshrut;
-            humanMarshrut.humanCurentPosition = hero.marshrutInfo.humanCurentPosition;
-            humanMarshrut.humanTheEnd = hero.marshrutInfo.humanTheEnd;
-
-            NecroModel.findOne({"_id":2},function(err,hero2){
-                if (err){
-                    next(err);
+            if (hero) {
+                global.human = {};
+                global.human = new Human(hero.name, hero.age);
+                global.human.vector.x1 = hero.vector.x1;
+                global.human.vector.y1 = hero.vector.y1;
+                global.human.vector.x2 = hero.vector.x2;
+                global.human.vector.y2 = hero.vector.y2;
+                global.human.health = hero.health;
+                global.human.atackDistance = hero.atackDistance;
+                global.human.speed = hero.speed;
+                global.human.experience = hero.experience;
+                global.human.uvorot = hero.uvorot;
+                global.human.parir = hero.parir;
+                global.human.krit = hero.krit;
+                global.human.armour = hero.armour;
+                global.human.fightStrength = hero.fightStrength;
+                global.human.goToXY = hero.goToXY;
+                global.human.onMarshrut = hero.onMarshrut;
+                humanMarshrut.humanCurentPosition = hero.marshrutInfo.humanCurentPosition;
+                humanMarshrut.humanTheEnd = hero.marshrutInfo.humanTheEnd;
+            };
+            NecroModel.findOne({"_id": 2}, function (err, hero2) {
+                if (err) {
+                    return next(err);
                 };
-                global.necro = {};
-                Necromant.prototype = global.human;         //наслідуємось від Людини
-                Necromant.constructor = Necromant;
-                global.necro = new Necromant(hero2.name);
-                global.necro.vector.x1 = hero2.vector.x1;
-                global.necro.vector.y1 = hero2.vector.y1;
-                global.necro.vector.x2 = hero2.vector.x2;
-                global.necro.vector.y2 = hero2.vector.y2;
-                global.necro.regeneration = hero2.regeneration;
-                global.necro.health = hero2.health;
-                global.necro.atackDistance = hero2.atackDistance;
-                global.necro.speed = hero2.speed;
-                global.necro.experience = hero2.experience;
-                global.necro.uvorot = hero2.uvorot;
-                global.necro.parir = hero2.parir;
-                global.necro.krit = hero2.krit;
-                global.necro.armour = hero2.armour;
-                global.necro.fightStrength = hero2.fightStrength;
-                global.necro.goToXY = hero2.goToXY;
-                global.necro.onMarshrut = hero2.onMarshrut;
-                necroMarshrut.necroCurentPosition = hero2.marshrutInfo.necroCurentPosition;
-                necroMarshrut.necroTheEnd = hero2.marshrutInfo.necroTheEnd;
+                if (hero2) {
+                    global.necro = {};
+                    Necromant.prototype = global.human;         //наслідуємось від Людини
+                    Necromant.constructor = Necromant;
+                    global.necro = new Necromant(hero2.name);
+                    global.necro.vector.x1 = hero2.vector.x1;
+                    global.necro.vector.y1 = hero2.vector.y1;
+                    global.necro.vector.x2 = hero2.vector.x2;
+                    global.necro.vector.y2 = hero2.vector.y2;
+                    global.necro.regeneration = hero2.regeneration;
+                    global.necro.health = hero2.health;
+                    global.necro.atackDistance = hero2.atackDistance;
+                    global.necro.speed = hero2.speed;
+                    global.necro.experience = hero2.experience;
+                    global.necro.uvorot = hero2.uvorot;
+                    global.necro.parir = hero2.parir;
+                    global.necro.krit = hero2.krit;
+                    global.necro.armour = hero2.armour;
+                    global.necro.fightStrength = hero2.fightStrength;
+                    global.necro.goToXY = hero2.goToXY;
+                    global.necro.onMarshrut = hero2.onMarshrut;
+                    necroMarshrut.necroCurentPosition = hero2.marshrutInfo.necroCurentPosition;
+                    necroMarshrut.necroTheEnd = hero2.marshrutInfo.necroTheEnd;
+                };
 //========================аналізуємо що отримали з бази ========================
-                if (global.human!=undefined){
-                    if (global.human.name==humanName){
-                        next();                                     // все ОК
+                    if (global.human != undefined) {
+                        if (global.human.name == humanName) {
+                            next();                                     // все ОК
+                        } else {
+                            res.status(403).send('Немає такої Людини ' + humanName);
+                        }
+                        ;
                     } else {
-                        res.status(403).send('Немає такої Людини ' + humanName);
-                    };
-                } else {res.status(403).send('Персонаж класу Некромант не створений');
-                };
-            });
+                        res.status(403).send('Персонаж класу Людина не створений');
+                    }
+                    ;
+                });
         });
     } else {  //======== якщо не треба лізти в базу за героями=============
         if (global.human!=undefined){
@@ -119,7 +125,7 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
             } else {
                 res.status(403).send('Немає такої Людини ' + humanName);
             };
-        } else {res.status(403).send('Персонаж класу Некромант не створений');
+        } else {res.status(403).send('Персонаж класу Людина не створений');
         };
     };
 
