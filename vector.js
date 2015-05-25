@@ -2,7 +2,6 @@
  * Created by Note on 25.04.2015.
  */
 
-
 module.exports = function (x1,y1,x2,y2) {
     this.x1 = x1 || 0;
     this.y1 = y1 || 0;
