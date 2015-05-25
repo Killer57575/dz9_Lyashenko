@@ -17,13 +17,11 @@ createRouter.post('/necro', function(req, res) {
     Necromant.prototype = global.human;         //наслідуємось від Людини
     Necromant.constructor = Necromant;
         global.necro = new Necromant(name);
-        //global.necro._id = 2;
         var NecroModel = mongoose.model('necroModel');
         global.necro.marshrutInfo = {
             necroCurentPosition:necroMarshrut.necroCurentPosition,
             necroTheEnd:necroMarshrut.necroTheEnd
         };
-        //var necrodoc = new NecroModel(global.necro);
         global.necro._id = 2;
         NecroModel.findOneAndUpdate({"name": name},global.necro,{upsert: true},function(err){
             if (err) {
@@ -45,7 +43,6 @@ createRouter.post('/human', function(req, res) {
         global.human = new Human(name, age);
         global.human._id = 1;
         var HumanModel = mongoose.model('humanModel');
-        //var humandoc = new HumanModel(global.human);
         global.human.marshrutInfo = {
             humanCurentPosition:humanMarshrut.humanCurentPosition,
             humanTheEnd:humanMarshrut.humanTheEnd

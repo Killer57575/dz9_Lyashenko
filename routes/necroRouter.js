@@ -9,7 +9,7 @@ var Necromant = require('../necro');
 var humanMarshrut = require('../humanMarshrut');
 var necroMarshrut = require('../necroMarshrut');
 var world = require('../world');
-var hel;
+var hel; //змінна для перевірки чи втратив здоровя, тимчасова
 
 function ableToFight (){
     if (global.human!=undefined){
@@ -125,18 +125,6 @@ necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
 });
 
 
-/*necroRouter.get('/:necroName/*', function(req, res, next) { //валідатор
-    var necroName = req.params.necroName;
-    if (global.necro!=undefined){
-        if (global.necro.name==necroName){
-            next();        // все ОК
-        } else {
-            res.status(403).send('Немає такого Некроманта ' + necroName);
-        };
-    } else {res.status(403).send('Персонаж класу Некромант не створений');
-    };
-});*/
-
 necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
     var necroName = req.params.necroName;
 
@@ -150,6 +138,7 @@ necroRouter.get('/:necroName/moveTo/:x/:y', function(req, res) {
 
 necroRouter.get('/:necroName/moveTo', function(req, res) {
     var necroName = req.params.necroName;
+
     global.necro.moveTo();
     ableToFight();
     world.refresh();
@@ -159,7 +148,6 @@ necroRouter.get('/:necroName/moveTo', function(req, res) {
 
 
 necroRouter.get('/:necroName/fight', function(req, res) {
-    var HumanModel = mongoose.model('humanModel');
     var necroName = req.params.necroName;
 
     if (global.human!=undefined) {    //чи створена людина

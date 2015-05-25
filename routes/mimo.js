@@ -5,7 +5,7 @@ var express = require('express');
 var mimoRouter = express.Router();
 
 
-mimoRouter.get('/', function(req, res) {
+mimoRouter.use('/', function(req, res) {
     res.status(403).send('Для створення персонажа скористайтесь /create'+'<br />'+'Для інших дій скористайтесь посиланням /human або /necromant');
 });
 
