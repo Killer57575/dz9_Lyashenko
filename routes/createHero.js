@@ -6,6 +6,8 @@ var createRouter = express.Router();
 var mongoose = require('mongoose');
 var Human = require('../human');
 var Necromant = require('../necro');
+var humanMarshrut = require('../humanMarshrut');
+var necroMarshrut = require('../necroMarshrut');
 
 
 createRouter.post('/necro', function(req, res) {
@@ -17,6 +19,10 @@ createRouter.post('/necro', function(req, res) {
         global.necro = new Necromant(name);
         //global.necro._id = 2;
         var NecroModel = mongoose.model('necroModel');
+        global.necro.marshrutInfo = {
+            necroCurentPosition:necroMarshrut.necroCurentPosition,
+            necroTheEnd:necroMarshrut.necroTheEnd
+        };
         //var necrodoc = new NecroModel(global.necro);
         global.necro._id = 2;
         NecroModel.findOneAndUpdate({"name": name},global.necro,{upsert: true},function(err){
@@ -40,6 +46,10 @@ createRouter.post('/human', function(req, res) {
         global.human._id = 1;
         var HumanModel = mongoose.model('humanModel');
         //var humandoc = new HumanModel(global.human);
+        global.human.marshrutInfo = {
+            humanCurentPosition:humanMarshrut.humanCurentPosition,
+            humanTheEnd:humanMarshrut.humanTheEnd
+        };
 
         HumanModel.findOneAndUpdate({"name": name},global.human,{upsert: true},function(err){
             if (err) {

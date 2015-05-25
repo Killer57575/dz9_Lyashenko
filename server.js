@@ -7,8 +7,8 @@ var app = express ();
 var mongoose = require('mongoose');
 var bodyparser = require ('body-parser');
 var url = 'mongodb://localhost:27017/LyashenkoDb';
-var logger = require('morgan');
-app.use(logger('dev'));
+//var logger = require('morgan');
+//app.use(logger('dev'));
 app.use(bodyparser.json());
 //app.use(bodyparser.urlencoded({extended:true}));
 
