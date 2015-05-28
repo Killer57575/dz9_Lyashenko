@@ -18,6 +18,7 @@ function ableToFight (){
             global.human.fight(global.necro);              // якщо після переміщення можемо вдарити
             if (hel>global.necro.health){
                 global.necro.fight(global.human); //якщо вдарили то дати здачу
+                saveNecromant(global.necro.name);
             };
         };
     };
