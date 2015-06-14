@@ -23,7 +23,7 @@ createRouter.post('/necro', function(req, res) {
             necroTheEnd:necroMarshrut.necroTheEnd
         };
         global.necro._id = 2;
-        NecroModel.findOneAndUpdate({"name": name},global.necro,{upsert: true},function(err){
+        NecroModel.findOneAndUpdate({"_id": 2},global.necro,{upsert: true},function(err){
             if (err) {
                 return res.status(500).send(err);
             };
@@ -48,7 +48,7 @@ createRouter.post('/human', function(req, res) {
             humanTheEnd:humanMarshrut.humanTheEnd
         };
 
-        HumanModel.findOneAndUpdate({"name": name},global.human,{upsert: true},function(err){
+        HumanModel.findOneAndUpdate({"_id": 1},global.human,{upsert: true},function(err){
             if (err) {
                 return res.status(500).send(err);
             };

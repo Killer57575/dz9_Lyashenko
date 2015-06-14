@@ -6,7 +6,9 @@ var mimoRouter = express.Router();
 
 
 mimoRouter.use('/', function(req, res) {
-    res.status(403).send('Для створення персонажа скористайтесь /create'+'<br />'+'Для інших дій скористайтесь посиланням /human або /necromant');
+    res.status(403).send('Для створення персонажа скористайтесь посиланням /create'+
+    '<br />' + 'Для перезапуску гри скористайтесь посиланням /reset' +
+    '<br />' + 'Для інших дій скористайтесь посиланням /human або /necromant');
 });
 
 module.exports = mimoRouter;

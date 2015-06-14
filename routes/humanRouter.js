@@ -115,8 +115,7 @@ humanRouter.get('/:humanName/*', function(req, res, next) {  //валідато�
                         ;
                     } else {
                         res.status(403).send('Персонаж класу Людина не створений');
-                    }
-                    ;
+                    };
                 });
         });
     } else {  //======== якщо не треба лізти в базу за героями=============
@@ -155,7 +154,6 @@ humanRouter.get('/:humanName/moveTo', function(req, res) {
 humanRouter.get('/:humanName/fight', function(req, res) {
     var humanName = req.params.humanName;
 
-    //===================логіка===========================
     if (global.necro!=undefined) {   //чи Некромант створений
         if ((global.human.health<=0)||(global.necro.health<=0)){
             global.necro.health<=0?console.log('Переміг ' + global.human.name):console.log('Переміг ' + global.necro.name);

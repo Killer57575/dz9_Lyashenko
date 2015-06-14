@@ -6,6 +6,7 @@
 var createRouter = require('./createHero');
 var humanRouter = require('./humanRouter');
 var necroRouter = require('./necroRouter');
+var resetRouter = require('./resetRouter');
 var mimoRouter = require('./mimo'); //роутер для не валідних запитів
 
 
@@ -28,6 +29,7 @@ module.exports = function (app){
      app.use('/create', createRouter);
      app.use('/human', humanRouter);
      app.use('/necromant', necroRouter);
+     app.use('/reset', resetRouter);
      app.use('*', mimoRouter);
 
      app.use(errHandler);
