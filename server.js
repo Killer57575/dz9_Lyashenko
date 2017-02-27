@@ -13,9 +13,9 @@ app.use(bodyparser.json());
 //app.use(bodyparser.urlencoded({extended:true}));
 
 var index = require('./routes/index')(app);
+var db = mongoose.connection;
 
 mongoose.connect(url);
-var db = mongoose.connection;
 
 db.once('open', function () {
     require('./models/index.js');
